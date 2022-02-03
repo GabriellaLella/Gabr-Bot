@@ -1,7 +1,23 @@
 # Gabr-Bot
 ![Gabriella bot immagine](https://user-images.githubusercontent.com/84185597/152428832-fb6dc7fe-7fa4-4744-afda-4aa66df1bba8.png)
+
+
+
+
+
+
+
 bot per whatsapp con numerosi comandi 
+
+
+
+
+
+
+
+
 ;aiuto: visualizza il menu di aiuto
+
 ;kick <utente(i)>: espelle gli utenti specificati
 ;ban <utente(i)>: banna gli utenti specificati
 ;remind : tagga l'utente dopo il tempo specificato, oltre a visualizzare il messaggio
