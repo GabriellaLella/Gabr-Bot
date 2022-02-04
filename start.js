@@ -1,405 +1,56 @@
-const  fs  =  richiedi ( "fs" ) ;
-const  Gruppo  =  JSON . parse ( fs . readFileSync ( './database/group.json' ) ) ;
+console.log('✅ Iniziando...')
+let { spawn } = require('child_process')
+let path = require('path')
+let fs = require('fs')
+let package = require('./package.json')
+const CFonts  = require('cfonts')
 
-/**
-*
-* @param { stringa } id
-*/
-const  addGroup  =  ( id )  =>  {
-  let  position  =  false ;
-    Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  vero ;
-    }
-  } ) ;
-    se  ( posizione  ===  falso )  {
-      const  obj  =  { 
-          da : id , 
-          offline : falso , 
-          benvenuto : falso , 
-          antilink : falso ,
-          parolacce : falso ,
-          anticancellazione : falso ,
-          rileva : falso ,
-          viewOnce : false ,
-        } ;
-        Gruppo . spingere ( obj ) ;
-        fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-        restituisce  falso ;
-    }
-} ;
+CFonts.say('Gabriella', {
+  font: 'pallet',
+  align: 'center',
+  gradient: ['red', 'magenta']
+})
+CFonts.say(`Gabr-Bot By Gabry`, {
+  font: 'console',
+  align: 'center',
+  colors: ['yellow']
+})
 
+var isRunning = false;
 /**
-*
-* @param { stringa } id
-*/
-const  cekOffline  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
+ * Start a js file
+ * @param {String} file `path/to/file`
+ */
+function start(file) {
+  if (isRunning) return;
+  isRunning = true;
+  let args = [path.join(__dirname, file), ...process.argv.slice(2)];
+  let p = spawn(process.argv[0], args, {
+    stdio: ['inherit', 'inherit', 'inherit', 'ipc']
+  });
+  p.on('message', data => {
+    console.log('[RECEIVED]', data);
+    switch (data) {
+      case 'reset':
+        p.kill();
+        isRunning = false;
+        start.apply(this, arguments);
+        break
+      case 'uptime':
+        p.send(process.uptime());
+        break
     }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . offline ;
-    }
-} ;
+  });
+  p.on('exit', code => {
+    isRunning = false;
+    console.error('Exited with code:', code);
+    if (code === 0) return;
+    fs.watchFile(args[0], () => {
+      fs.unwatchFile(args[0]);
+      start(file);
+    });
+  });
 
-/**
-*
-* @param { stringa } id
-*/
-const  addOffline  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . offline  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
+}
 
-/**
-*
-* @param { stringa } id
-*/
-const  delOffline  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . offline  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  cekBenvenuto  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . benvenuto ;
-    }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  addBenvenuto  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . benvenuto  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  delBenvenuto  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . benvenuto  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-/**
-*
-* @param { stringa } id
-*/
-const  cekDetect  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . rilevare ;
-    }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  addDetect  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . rileva  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  delDetect  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . rileva  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  cekAntilink  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . anticollegamento ;
-    }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  addAntilink  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . antilink  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  delAntilink  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . antilink  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  cekBadword  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . parolacce ;
-    }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  addBadword  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . parolaccia  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  delBadword  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . parolaccia  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  cekAntidelete  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . anticancellazione ;
-    }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  addAntidelete  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . anticancella  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  delAntidelete  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . anticancella  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  cekViewonce  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    ritorno  Gruppo [ posizione ] . vistaUna volta ;
-    }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  addViewonce  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . viewOnce  =  vero ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-/**
-*
-* @param { stringa } id
-*/
-const  delViewonce  =  ( id )  =>  {
-  let  position  =  false ;
-  Oggetto . tasti ( Gruppo ) . forEach ( ( i )  =>  {
-    if  ( Gruppo [ i ] . da  ===  id )  {
-      posizione  =  io ;
-    }
-  } ) ;
-  se  ( posizione  !==  falso )  {
-    Gruppo [ posizione ] . viewOnce  =  falso ;
-    fs . writeFileSync ( './database/group.json' ,  JSON . stringify ( Gruppo ,  null ,  "\t" ) ) ;
-  }
-} ;
-
-modulo . esportazioni  =  {
-  gruppo ,
-  addGroup ,
-  aggiungiOffline ,
-  delOffline ,
-  cekOffline ,
-  aggiungi Benvenuto ,
-  del Benvenuto ,
-  cekBenvenuto ,
-  addAntilink ,
-  delAntilink ,
-  cekAntilink ,
-  addBadword ,
-  del parolacce ,
-  cekBadword ,
-  aggiungi Anticancella ,
-  delAnticancella ,
-  cekAntidelete ,
-  addDetect ,
-  delRileva ,
-  cekDetect ,
-  addViewonce ,
-  delView una volta ,
-  cekViewonce
-} ;
+start('main.js');
