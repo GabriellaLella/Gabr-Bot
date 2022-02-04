@@ -90,8 +90,10 @@ exports.listwb = 'Event list';
 exports.pregt = 'She Loves Me?';
 exports.donate = `≡ *DONATION*
 you can donate if you want to help keep the bot active
+
 ▢ *PayPal*
 • *Link :* https://tinyurl.com/PayPal-fg
+
 _By donating you get_  *Premium* `;
 exports.cretb = 'Create your own bot using Termux';
 
@@ -137,18 +139,22 @@ exports.cekwarn = (warn) => {
 exports.nowarn = `✳️ User has no warning`;
  
 exports.Pbahasa = `✳️ Select the language you want to use
+
 *Available languages*
 - es (Spanish) 
 - id (Indonesia) 
 - en (English)
 - pt (Portugués)
+
 📌 Example : */language es*`;
 exports.nobahasa = `Language not available
+
 *Available languages*
 - es (Spanish) 
 - id (Indonesia) 
 - en (English)
 - pt (Portugués)
+
 📌 Example : */language es*`;
 
 exports.online = '✅ Successfully turned on the bot in this group';
@@ -192,6 +198,7 @@ exports.antilink = '❎ We do not allow links from other groups!\nSorry you will
 
 exports.setwel = (value) => { 
   return `✳️ Enter your *welcome* message
+
 *📌 Example:*
 /setwelcome Welcome @user to  @group
  
@@ -201,6 +208,7 @@ Bio : @bio
 Date : @date
 Group Name : @group
 Description : @desc
+
 *Examples for each function*\n` + value;
 };
 
@@ -209,6 +217,7 @@ exports.setbye = (value) => {
   
 *📌 Example:*
 /setbye  goodbye  @user
+
 *Examples for each function*\n` + value;
 };
 
@@ -241,10 +250,13 @@ exports.hapus = (value) =>{
 exports.onGame = '⚠️ There are still unanswered questions in this chat';
 exports.soal = (text1, text2, text3) => {
   return `${text1}
+
 *⏳ Timeout*
 ${text2}
+
 *POIN*
 ${text3}
+
 Reply this message to answer
 The answer hint appears in the last 10 seconds`;
 };
@@ -253,7 +265,7 @@ exports.timeout = '⏳ Time out the answer is ';
 exports.salah = '*❎ Wrong* !\nTry again';
 exports.hampir = '✳️ *A little more* !\nTry again';
 exports.benar = (value, value2) => {
-  return `✅ *Right*\nThe answer is ${value}\nyou get ${value2}`;
+  return `✅ *Right*\nThe answer is ${value}\nyou get ${value2} Coins`;
 };
 
 // afk
