@@ -38,6 +38,19 @@ Termux
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ;aiuto: visualizza il menu di aiuto
 
 ;kick <utente(i)>: espelle gli utenti specificati
