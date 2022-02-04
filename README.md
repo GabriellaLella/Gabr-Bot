@@ -8,16 +8,17 @@ bot per whatsapp con numerosi comandi
 
 
 
-### Instalación
+### Installazione
 
 1). **AVVIO**
 - **TERMUX**
 
 ```bash
-• pkg install git
-• pkg install ffmpeg
-• pkg install nodejs
-• git clone  https://github.com/GabriellaLella/Gabr-Bot.git
+•apt update && apt upgrade -y
+• pkg install ffmpeg -y
+• pkg install nodejs -y
+•pkg install git -y
+• git clone  https://github.com/GabriellaLella/Gabr-Bot
 • cd Gabr-Bot
 • npm i
 • npm start
