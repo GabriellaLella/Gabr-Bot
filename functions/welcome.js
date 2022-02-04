@@ -3,6 +3,7 @@ const Wel = JSON.parse(fs.readFileSync('./database/welcome.json'));
 
 const welAwal = `Hola @user 
 Bienvenido(a)  al grupo *@group*
+
 ▢ No olvide leer las reglas del grupo :v`;
 
 const byeAwal = `Adiós *@user*`;
