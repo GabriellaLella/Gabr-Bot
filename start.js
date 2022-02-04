@@ -1,4 +1,4 @@
-console.log('✅ Iniziando...')
+console.log('✅ Iniciando...')
 let { spawn } = require('child_process')
 let path = require('path')
 let fs = require('fs')
@@ -10,7 +10,7 @@ CFonts.say('FG98', {
   align: 'center',
   gradient: ['red', 'magenta']
 })
-CFonts.say(`Gabr-Bot by Gabriella`, {
+CFonts.say(`dylux-bot By FG98 Ig : @fg98._`, {
   font: 'console',
   align: 'center',
   colors: ['yellow']
