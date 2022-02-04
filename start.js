@@ -1,16 +1,16 @@
-console.log('✅ Iniziando...')
+cconsole.log('✅ Iniziando...')
 let { spawn } = require('child_process')
 let path = require('path')
 let fs = require('fs')
 let package = require('./package.json')
 const CFonts  = require('cfonts')
 
-CFonts.say('Gabriella', {
+CFonts.say('FG98', {
   font: 'pallet',
   align: 'center',
   gradient: ['red', 'magenta']
 })
-CFonts.say(`Gabriella-Bot By Gabriella`, {
+CFonts.say(`Gabr-Bot by Gabriella`, {
   font: 'console',
   align: 'center',
   colors: ['yellow']
