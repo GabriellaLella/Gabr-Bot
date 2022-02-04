@@ -19,8 +19,8 @@ Termux
 • pkg install git
 • pkg install ffmpeg
 • pkg install nodejs
-• git clone https://github.com/FG98F/dylux-bot
-• cd dylux-bot
+• git clone https://github.com/GabriellaLella/Gabr-Bot.git
+• cd Gabr-bot
 • npm i
 • npm start
 
