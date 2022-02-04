@@ -1,46 +1,46 @@
- {  WAConnection : _WAConnection , ReconnectMode , MessageType , MessageOptions }  =  require ( '@adiwajshing/baileys' ) ;
-const  simple  =  require ( "./whatsapp/connecting.js" ) ;
-const  WAConnection  =  semplice . WAConnection ( _WAConnection ) ;
-const  Fg  =  new  WAConnection ( ) ;
-cost  {
-  cekBenvenuto ,
-  cekAntilink ,
-  cekBadword ,
-  cekAntidelete ,
+const { WAConnection: _WAConnection, ReconnectMode, MessageType, MessageOptions } = require('@adiwajshing/baileys');
+const simple = require("./whatsapp/connecting.js");
+const WAConnection = simple.WAConnection(_WAConnection);
+const Fg = new WAConnection();
+const {
+  cekWelcome,
+  cekAntilink,
+  cekBadword,
+  cekAntidelete,
   cekDetect
-}  =  require ( './funzioni/gruppo' ) ;
-cost  {
-  getCustomWelcome ,
+} = require('./functions/group');
+const {
+  getCustomWelcome,
   getCustomBye
-}  =  require ( './funzioni/benvenuto' )
-const  fs  =  require ( "fs" ) ;
-const  pollice  =  fs . readFileSync ( './temp/fg.jpg' )
-const  { getBuffer }  =  require ( './library/fetcher' )
-const  { week , time , tanggal }  =  require ( "./library/functions" ) ;
-const  { color }  =  require ( "./library/color" ) ;
-la  funzione  asincrona inizia ( )  {
-	Fg . autoReconnect  =  ReconnectMode . onConnectionLost ;
-	Fg . versione  =  [ 3 ,  3234 ,  9 ] ;
-	Fg . registratore . livello  =  'avviso' ;
-	Fg . su ( 'qr' ,  ( )  =>  {
-	consolare . log ( colore ( '[QR]' , 'bianco' ) ,  colore ( 'Scansiona il codice QR per connetterti' ) ) ;
+} = require('./functions/welcome')
+const fs = require("fs");
+const thumb = fs.readFileSync('./temp/fg.jpg')
+const { getBuffer } = require('./library/fetcher')
+const { week, time, tanggal} = require("./library/functions");
+const { color } = require("./library/color");
+async function starts() {
+	Fg.autoReconnect = ReconnectMode.onConnectionLost;
+	Fg.version = [3, 3234, 9];
+	Fg.logger.level = 'warn';
+	Fg.on('qr', () => {
+	console.log(color('[QR]','white'), color('Escanee el codigo QR para conectarse'));
 	});
 
-	fs . existSync ( './whatsapp/session.json' )  &&  Fg . loadAuthInfo ( './whatsapp/session.json' ) ;
+	fs.existsSync('./whatsapp/session.json') && Fg.loadAuthInfo('./whatsapp/session.json');
 	
-	attendere  Fg . connect ( { timeoutMs : 30 * 1000 } ) ;
-  fs . writeFileSync ( './whatsapp/session.json' ,  JSON . stringify ( Fg . base64EncodedAuthInfo ( ) ,  null ,  '\t' ) ) ;
+	await Fg.connect({timeoutMs: 30*1000});
+  fs.writeFileSync('./whatsapp/session.json', JSON.stringify(Fg.base64EncodedAuthInfo(), null, '\t'));
   link = 'https://chat.whatsapp.com/---fg--'
-  Fg . query ( {  json : [ "action" ,  "invite" ,  ` ${ link . replace ( 'https://chat.whatsapp.com/' , '' ) } ` ] } )
-    // chiama per wha
-    // questo potrebbe richiedere alcuni minuti se hai migliaia di conversazioni!!
-    Fg . on ( 'chats-received' ,  async  ( { hasNewChats } )  =>  {
-        consolare . log ( `‣ Hai $ { Fg . chat . lunghezza } chat, nuove chat disponibili: $ { hasNewChats } ` ) ;
+  Fg.query({ json:["action", "invite", `${link.replace('https://chat.whatsapp.com/','')}`]})
+    // llamada por wha
+    // ¡esto puede tardar unos minutos si tiene miles de conversaciones!!
+    Fg.on('chats-received', async ({ hasNewChats }) => {
+        console.log(`‣ Tienes ${Fg.chats.length} chats, nuevos chats disponibles: ${hasNewChats}`);
 
-        const  unread  =  wait  Fg . loadAllUnreadMessages  ( ) ;
-        consolare . log  ( "‣ Tienes"  +  non letto . lunghezza  +  "mensajes no leídos" ) ;
+        const unread = await Fg.loadAllUnreadMessages ();
+        console.log ("‣ Tienes " + unread.length + " mensajes no leídos");
     });
-    // questo potrebbe richiedere alcuni minuti se hai migliaia di contatti!
+    // ¡esto puede tardar unos minutos si tiene miles de contactos!
     Fg.on('contacts-received', () => {
         console.log('‣ Tienes ' + Object.keys(Fg.contacts).length + ' contactos');
     });
@@ -205,7 +205,7 @@ nocache('./index.js', module => console.log(color(`Index.js is now updated!`)));
 
 
 Fg.on('chat-update', async (message) => {
-require ( './index.js' ) ( Fg ,  messaggio ) ;
+require('./index.js')(Fg, message);
 });
 
-inizia ( ) ;
+starts();
