@@ -12,4 +12,3 @@ module.exports = {
 	color,
 	bgcolor
 }
-© 2022 GitHub, Inc.
