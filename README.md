@@ -1,10 +1,7 @@
 # Gabr-Bot
-![Gabriella bot immagine](https://user-images.githubusercontent.com/84185597/152428832-fb6dc7fe-7fa4-4744-afda-4aa66df1bba8.png)
 
 
-
-
-
+![Gab jpg](https://user-images.githubusercontent.com/84185597/152524762-e9ed97ea-273e-487f-91c3-09b836df24b4.png)
 
 
 bot per whatsapp con numerosi comandi 
