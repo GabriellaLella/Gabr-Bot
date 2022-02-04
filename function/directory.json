@@ -1,0 +1,67 @@
+const  fs  =  richiedi ( 'fs' ) ;
+let  direct  =  JSON . parse ( fs . readFileSync ( './database/directory.json' ) ) ;
+
+/**
+* aggiungi img
+* @param { stringa } valore
+*/
+const  addImage  =  ( valore )  =>  {
+  testo  =  valore ;
+  diretto . immagine . push ( testo ) ;
+  fs . writeFileSync ( './database/directory.json' ,  JSON . stringify ( direct ,  null ,  '\t' ) ) ;
+} ;
+
+/**
+* aggiungi video
+* @param { stringa } valore
+*/
+const  addVideo  =  ( valore )  =>  {
+  testo  =  valore ;
+  diretto . video . push ( testo ) ;
+  fs . writeFileSync ( './database/directory.json' ,  JSON . stringify ( direct ,  null ,  '\t' ) ) ;
+} ;
+
+/**
+* aggiungi audio
+* @param { stringa } valore
+*/
+const  addAudio  =  ( valore )  =>  {
+  testo  =  valore ;
+  diretto . audio . push ( testo ) ;
+  fs . writeFileSync ( './database/directory.json' ,  JSON . stringify ( direct ,  null ,  '\t' ) ) ;
+} ;
+
+/**
+ * aggiungi adesivo 
+* @param { stringa } valore
+*/
+const  addStiker  =  ( valore )  =>  {
+  testo  =  valore ;
+  diretto . adesivo  . push ( testo ) ;
+  fs . writeFileSync ( './database/directory.json' ,  JSON . stringify ( direct ,  null ,  '\t' ) ) ;
+} ;
+
+/**
+ * aggiungi rapporto 
+* @param { stringa } id
+* @param { Oggetto } valore
+*/
+
+const  addReport  =  ( id ,  valore )  =>  {
+  testo  =  valore ;
+  oggetto  =  {
+    id : id ,
+    rapporto : valore
+  } ;
+  diretto . rapporto . spingere ( obj ) ;
+  fs . writeFileSync ( './database/directory.json' ,  JSON . stringify ( direct ,  null ,  '\t' ) ) ;
+} ;
+
+modulo . esportazioni  =  {
+  diretto ,
+  aggiungi immagine ,
+  aggiungi video ,
+  addStiker ,
+  aggiungi Audio ,
+  addReport
+} ;
