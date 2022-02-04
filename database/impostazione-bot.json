@@ -4,6 +4,12 @@
 	],
 	"nama" : " Gabriella-BOT " ,
 	"autore" : " Gabriella " ,
+	"packname": "@GabriellaLella",
+	"gameTime": 30000,
+	"poinGame": 100,
+	"poinAwal": 500,
+	"totalcommand": 1,
+	"hujanApi": "booA9w501BicnLk"
 
 	
 }
