@@ -1,10 +1,10 @@
 {
-	"immagine" : [
-		" auron "
+	"image": [
+		"auron"
 	],
-	"video" : [],
-	"audio" : [],
-	"adesivo" : [],
-	"rapporto" : [],
-	"risposta" : []
+	"video": [],
+	"audio": [],
+	"sticker": [],
+	"report": [],
+	"respon": []
 }
