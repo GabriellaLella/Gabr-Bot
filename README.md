@@ -14,6 +14,21 @@ bot per whatsapp con numerosi comandi
 
 
 
+Termux
+
+• pkg install git
+• pkg install ffmpeg
+• pkg install nodejs
+• git clone https://github.com/FG98F/dylux-bot
+• cd dylux-bot
+• npm i
+• npm start
+
+
+
+
+
+
 
 
 ;aiuto: visualizza il menu di aiuto
