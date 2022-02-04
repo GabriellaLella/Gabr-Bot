@@ -13,7 +13,7 @@ bot per whatsapp con numerosi comandi
 
 ### Instalación
 
-1). **CORRER**
+1). **AVVIO**
 - **TERMUX**
 
 ```bash
