@@ -401,5 +401,5 @@ module.exports = {
   cekDetect,
   addViewonce,
   delViewonce,
-  cekViewonce
+  cekViewonce,
 };
