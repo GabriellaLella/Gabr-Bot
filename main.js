@@ -200,6 +200,9 @@ function uncache(module = '.') {
         });
         }
 
+
+
+
 require('./index.js');
 nocache('./index.js', module => console.log(color(`Index.js is now updated!`)));
 
