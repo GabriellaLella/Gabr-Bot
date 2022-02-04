@@ -147,9 +147,12 @@ Fg.on('message-delete', async (m) => {
     const Type = Object.keys(m.message)[0];
     await Fg.reply(m.key.remoteJid, `
 ━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
+
 *▢ Nombre :* @${m.participant.split`@`[0]} 
 *▢ Hora :* ${time}
+
 ━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
+
 `.trim(), m.message, {
       contextInfo: {
         mentionedJid: [m.participant]
@@ -199,9 +202,6 @@ function uncache(module = '.') {
         }
         });
         }
-
-
-
 
 require('./index.js');
 nocache('./index.js', module => console.log(color(`Index.js is now updated!`)));
