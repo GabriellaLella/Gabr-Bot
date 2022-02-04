@@ -10,7 +10,7 @@ CFonts.say('Gabriella', {
   align: 'center',
   gradient: ['red', 'magenta']
 })
-CFonts.say(`Gabr-bot By Gabriella, {
+CFonts.say(`Gabr-bot By Gabriella`, {
   font: 'console',
   align: 'center',
   colors: ['yellow']
