@@ -25,6 +25,7 @@ async function starts() {
 	Fg.on('qr', () => {
 	console.log(color('[QR]','white'), color('Escanee el codigo QR para conectarse'));
 	});
+
 	fs.existsSync('./whatsapp/session.json') && Fg.loadAuthInfo('./whatsapp/session.json');
 	
 	await Fg.connect({timeoutMs: 30*1000});
@@ -35,6 +36,7 @@ async function starts() {
     // ¡esto puede tardar unos minutos si tiene miles de conversaciones!!
     Fg.on('chats-received', async ({ hasNewChats }) => {
         console.log(`‣ Tienes ${Fg.chats.length} chats, nuevos chats disponibles: ${hasNewChats}`);
+
         const unread = await Fg.loadAllUnreadMessages ();
         console.log ("‣ Tienes " + unread.length + " mensajes no leídos");
     });
@@ -89,6 +91,7 @@ async function starts() {
       }
   }
 });
+
 //-- Detector Promovido/Degradado
 Fg.on('group-participants-update', async (anu) => {
   metdata = await Fg.groupMetadata(anu.jid);
@@ -134,6 +137,7 @@ Fg.on('group-participants-update', async (anu) => {
     Fg.sendMessage(metdata.id, img, MessageType.image, {caption: capt, contextInfo: {'mentionedJid': [num]}});
   }
 })
+
 //--antidelete 
 Fg.on('message-delete', async (m) => {
     if (m.key.fromMe) return;
@@ -143,9 +147,12 @@ Fg.on('message-delete', async (m) => {
     const Type = Object.keys(m.message)[0];
     await Fg.reply(m.key.remoteJid, `
 ━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
+
 *▢ Nombre :* @${m.participant.split`@`[0]} 
 *▢ Hora :* ${time}
+
 ━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
+
 `.trim(), m.message, {
       contextInfo: {
         mentionedJid: [m.participant]
@@ -153,6 +160,7 @@ Fg.on('message-delete', async (m) => {
     });
     Fg.copyNForward(m.key.remoteJid, m.message).catch(e => console.log(e, m));
   });
+
     
 //---llamada auto block
 Fg.on("CB:Call", json => {
@@ -161,17 +169,25 @@ Fg.on("CB:Call", json => {
   call = calling[1].from;
   Fg.sendMessage(call, `*${Fg.user.name}* No hagas llamadas al bot, tu número se bloqueará automáticamente`, MessageType.text).then(() => Fg.blockUser(call, "add"));
 }); 
+
+
 }
+
 /**
  * 
  * @param {string} módulo Nombre o ruta del módulo
-	@@ -180,29 +183,26 @@
+ * @param {function} cb <optional> 
+ */
+ 
+function nocache(module, cb = () => { }) {
   console.log("‣ Modulo", `'${module}'`, "se está revisando si hay cambios");
   fs.watchFile(require.resolve(module), async () => {
     await uncache(require.resolve(module));
     cb(module);
     });
     }
+
+
 /**
  * Uncache un modulo
  * @param {string} módulo Nombre o ruta del módulo
@@ -189,3 +205,10 @@ function uncache(module = '.') {
 
 require('./index.js');
 nocache('./index.js', module => console.log(color(`Index.js is now updated!`)));
+
+
+Fg.on('chat-update', async (message) => {
+require('./index.js')(Fg, message);
+});
+
+starts();
