@@ -19,6 +19,7 @@ bot per whatsapp con numerosi comandi
 • pkg install nodejs -y
 •pkg install git -y
 • git clone  https://github.com/GabriellaLella/Gabr-Bot
+• ls
 • cd Gabr-Bot
 • npm i
 • npm start
